@@ -10,7 +10,7 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
-import { Badge, Box, Button, Chip, Stack } from '@mui/material';
+import { Badge, Box,  Chip, Stack } from '@mui/material';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
 
@@ -19,12 +19,11 @@ export default function BlogCard({ blog }) {
 
 
 
-    const { id, title, content, image, publish_date, author, likes, post_views, comment_count, category_name } = blog
+    const { title, content, image, publish_date, author, likes, post_views, comment_count, category_name } = blog
 
     const date = new Date(publish_date).toLocaleString('us-US')
 
 
-    console.log(date);
 
     return (
         <Box sx={{ borderBottom: '1px solid rgba(0, 0, 0, 0.12)', display: 'flex', justifyContent: 'space-between', p: 2 }}>

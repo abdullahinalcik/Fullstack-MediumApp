@@ -143,7 +143,11 @@ export default function LoginModal() {
                                                         />
                                                     </FormControl>
 
-                                                    <Button variant='contained' sx={{ backgroundColor: 'black', borderRadius: 5, px: 4, py: 2 }} color="primary" type="submit">
+                                                    <Button variant='contained' sx={{
+                                                        backgroundColor: 'black', borderRadius: 5, px: 4, py: 2, '&:hover': {
+                                                            backgroundColor: '#272727',
+                                                        },
+                                                    }} color="primary" type="submit">
                                                         {
                                                             loading ? 'Loading...' : 'SIGN IN '
                                                         }
