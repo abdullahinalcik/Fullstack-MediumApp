@@ -15,12 +15,6 @@ const Dashboard = () => {
   useEffect(() => {
     getBlog('blogs')
 
-
-
-
-
-
-
   }, [])
 
 
@@ -39,9 +33,9 @@ const Dashboard = () => {
             }
           </Grid>
 
-          <Divider sx={{ height: '100vh', border: '1px solid orrange', marginTop: 12, marginLeft: 10 }} variant="middle" orientation="vertical" />
+          <Divider sx={{ height: '100vh',display:{xs:'none', md:'flex'}  ,border: '1px solid orrange', marginTop: 12, marginLeft:5 }} variant="middle" orientation="vertical" />
 
-          <Grid item xs={0} md={4} lg={3} >
+          <Grid item sx={{display:{xs:'none', md:'flex'}}} md={4} lg={3} >
 
             <News />
           </Grid>

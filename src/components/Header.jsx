@@ -5,7 +5,7 @@ import { modal } from "../features/authSlice"
 const Header = () => {
     const dispatch = useDispatch()
     return (
-        <Container maxWidth={"false"} sx={{ backgroundColor: '#FFC018', marginTop: {xs:'30px', md:'120px'} }} >
+        <Container maxWidth={"false"} sx={{ backgroundColor: '#FFC018' }} >
 
             <Container maxWidth={'xl'}>
                 <Grid container rowSpacing={2} pb={3}>

@@ -26,10 +26,6 @@ const News = () => {
         getNews()
     }, [])
 
-
-
-console.log(news);
-
     return (
         <Box mt={5} >
             <Typography pl={2} variant="body1" fontWeight={800} color="initial">News From Today</Typography>

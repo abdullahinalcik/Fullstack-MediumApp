@@ -8,6 +8,7 @@ import NewBlog from "../pages/NewBlog"
 import MyBlogs from "../pages/MyBlogs"
 import Profile from "../pages/Profile"
 import LoginModal from "../components/LoginModal"
+import DetailBlog from "../pages/DetailBlog"
 
 
 
@@ -32,6 +33,8 @@ const AppRouter = () => {
           <Route path='newblog' element={<NewBlog />} />
           <Route path='myblogs' element={<MyBlogs />} />
           <Route path='profile' element={<Profile />} />
+          <Route path="detail/:id" element={<DetailBlog />} />
+
 
         </Route>
 

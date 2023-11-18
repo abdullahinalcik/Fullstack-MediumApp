@@ -12,16 +12,18 @@ import ShareIcon from '@mui/icons-material/Share';
 import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
 import { Badge, Box,  Chip, Stack } from '@mui/material';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function BlogCard({ blog }) {
 
+const navigate = useNavigate()
 
+    const { id,title, content, image, publish_date, author, likes, post_views, comment_count, category_name } = blog
+    
 
-    const { title, content, image, publish_date, author, likes, post_views, comment_count, category_name } = blog
-
-    const date = new Date(publish_date).toLocaleString('us-US')
+    const date = new Date(publish_date).toDateString()
 
 
 
@@ -75,7 +77,7 @@ export default function BlogCard({ blog }) {
 
             </Box>
 
-            <Stack justifyContent={'center'} alignItems={'center'} marginXY={'auto'} sx={{ flex: '1 0 0' }}>
+            <Stack justifyContent={'center'} alignItems={'center'} margin={'auto'} sx={{ flex: '1 0 0', cursor:'pointer'}} onClick={() => navigate(`detail/${id}`, {state:blog} )} >
                 <img style={{ objectFit: "contain", height: '80%', width: '80%' }} src={image} alt={title} />
             </Stack>
 

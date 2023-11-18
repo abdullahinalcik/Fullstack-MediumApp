@@ -4,7 +4,6 @@ const initialState = {
   loading: false,
   error: false,
   blogs: [],
-  blogDetail: {},
   userlikes:[],
   categories: [],
   userBlogs:[]
