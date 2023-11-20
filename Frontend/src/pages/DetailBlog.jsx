@@ -13,25 +13,41 @@ import { Badge, Box, Button, CardMedia, Chip, Stack } from '@mui/material';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import BlogModal from '../components/BlogModal';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import useBlogCall from '../hooks/useBlogCall';
+import BlogComment from '../components/BlogComment';
 
 
 
 export default function DetailBlog() {
-
-    const location = useLocation();
-    const blogDetail = location.state
-
-    const { userInfo } = useSelector(state => state.auth)
-
+    const { id } = useParams()
     const navigate = useNavigate()
+    const { userInfo } = useSelector(state => state.auth)
+    const { blogDetail } = useSelector(state => state.blog)
+    const { getBlogById, createLike } = useBlogCall()
+
+
+    const [isUpdate, setIsUpdate] = useState(null)
     const [isCliked, setIsCliked] = useState(false)
+    const [open, setOpen] = useState(false);
 
+    // modal toggle
+    const handleOpen = () => setOpen(true);
 
+    const orderedComment = blogDetail?.comments ?  [...blogDetail.comments] : []
+
+    useEffect(() => {
+        getBlogById('blogDetail', id)
+    }, [])
+
+    // isAuther
     const isAuthor = blogDetail?.author === userInfo?.username
 
-
+    // check isLiked
+    let isLiked = blogDetail?.likes_n?.some(like => like.user_id === userInfo?.id)
 
     return (
         <>
@@ -42,7 +58,8 @@ export default function DetailBlog() {
                             sx={{ mb: 5, p: 0 }}
                             avatar={
                                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    {blogDetail?.author.slice(0, 1).toUpperCase()}
+                                    {blogDetail?.author ? blogDetail?.author.slice(0, 1).toUpperCase() : 'A'}
+
                                 </Avatar>
                             }
                             title={<span style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{blogDetail?.author}</span>}
@@ -62,18 +79,18 @@ export default function DetailBlog() {
 
                     <CardActions disableSpacing sx={{ justifyContent: "space-between" }}>
                         <Box>
-                            <IconButton aria-label="add to favorites" >
-                                <Badge badgeContent={1} color="info">
-                                    <FavoriteIcon sx={{ color: "gray" }} />
+                            <IconButton aria-label="add to favorites" onClick={() => createLike(id)} >
+                                <Badge badgeContent={blogDetail?.likes} color="info">
+                                    <FavoriteIcon sx={{ color: isLiked ? "red" : "gray" }} />
                                 </Badge>
                             </IconButton>
                             <IconButton aria-label="view">
-                                <Badge badgeContent={2} color="info" >
+                                <Badge badgeContent={blogDetail?.post_views} color="info" >
                                     <VisibilityOutlinedIcon />
                                 </Badge>
                             </IconButton>
                             <IconButton aria-label="view" onClick={() => setIsCliked(!isCliked)}>
-                                <Badge badgeContent={3} color="info">
+                                <Badge badgeContent={blogDetail?.comment_count} color="info">
                                     <RateReviewOutlinedIcon />
                                 </Badge>
                             </IconButton>
@@ -89,10 +106,10 @@ export default function DetailBlog() {
                             {
                                 isAuthor &&
                                 <Stack spacing={2} direction={{ md: 'column', lg: 'row' }} useFlexGap flexWrap="wrap">
-                                    <Button variant="contained" color="success" >
+                                    <Button variant="contained" color="success" onClick={() => { handleOpen(), setIsUpdate(true) }}>
                                         Update
                                     </Button>
-                                    <Button variant="outlined" color="error" >
+                                    <Button variant="outlined" color="error" onClick={() => { handleOpen(), setIsUpdate(false) }}>
                                         Delete
                                     </Button>
                                 </Stack>
@@ -117,7 +134,25 @@ export default function DetailBlog() {
             </Box>
 
 
+            {
+                isCliked &&
+                <Box sx={{ display: 'flex', flexDirection: 'column', width: "50%", mb: 5, gap: 4, p: 10, pt: 5 }}>
 
+                    <BlogComment id={blogDetail.id} />
+
+                    {
+                        orderedComment.reverse().map(comment =>
+                            <Box key={comment.id} sx={{ width: "300px", borderBottom: "1px solid black", p: 2, display: 'flex', flexDirection: 'column', gap: 3 }}>
+                                <Typography variant="body1" color="initial">{comment.user}</Typography>
+                                <Typography variant="body2" color="initial">{comment.time_stamp}</Typography>
+                                <Typography variant="body1" color="initial">{comment.content}</Typography>
+                            </Box>)
+                    }
+                </Box>
+            }
+
+
+            <BlogModal open={open} setOpen={setOpen} blogDetail={blogDetail} isUpdate={isUpdate} />
         </>
 
     );

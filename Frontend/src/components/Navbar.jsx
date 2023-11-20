@@ -11,13 +11,13 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import BadgeAvatars from './BadgeAvatars';
 import { CardMedia, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { modal } from '../features/authSlice';
 import useAuthCall from '../hooks/useAuthCall';
 import logo from '../img/logo.png'
+import { useNavigate } from 'react-router-dom';
 
 
 const pages = [
@@ -39,6 +39,7 @@ function Navbar() {
   const { token, userInfo } = useSelector(state => state.auth)
   const { logout } = useAuthCall()
   const dispacth = useDispatch();
+  const navigate = useNavigate()
 
 
   let settings = token ? LogedInSettings : LogedOutSettings
@@ -78,7 +79,7 @@ function Navbar() {
             <Toolbar disableGutters >
 
               <Box sx={{ display: { xs: 'none', md: 'flex' }, }} flexDirection={'column'} mr={2} mt={0}>
-                <Box width={'100px'} m={0} p={0}>
+                <Box width={'100px'} m={0} p={0} sx={{cursor:'pointer'}} onClick={()=>navigate('/')} >
                   <CardMedia
                     component="img"
                     height="70"
@@ -93,14 +94,13 @@ function Navbar() {
                       pt: 0,
                       display: { xs: 'none', md: 'flex' },
                       fontFamily: 'monospace',
-                      fontWeight: 700,
                       letterSpacing: '.1rem',
                       textDecoration: 'none',
+                      color: "black",
+                      fontWeight: 'bolder'
                     }}
-                  >
-                    <Link to={'/'} style={{ textDecoration: 'none', color: "black", fontWeight: 'bolder' }}>
+                  >  
                       TEAMWORK
-                    </Link>
                   </Typography>
                 </Box>
 

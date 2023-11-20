@@ -2,10 +2,12 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { fetchFail, fetchStart, loginSuccess, logoutSuccess, modal, registerSuccess } from "../features/authSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
+import { useNavigate } from "react-router-dom";
 
 const useAuthCall = () => {
   
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
 
   const login = async (userData) => {
@@ -15,6 +17,7 @@ const useAuthCall = () => {
       const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}` + "users/auth/login/",userData);
       dispatch(loginSuccess(data));
       dispatch(modal(false))
+      navigate(-1)
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);

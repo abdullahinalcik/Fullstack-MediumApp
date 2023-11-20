@@ -1,18 +1,23 @@
 import { Button, Container, Grid, Typography } from "@mui/material"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { modal } from "../features/authSlice"
 
 const Header = () => {
     const dispatch = useDispatch()
+
+    const { token } = useSelector(state => state.auth)
+
     return (
         <Container maxWidth={"false"} sx={{ backgroundColor: '#FFC018' }} >
 
             <Container maxWidth={'xl'}>
                 <Grid container rowSpacing={2} pb={3}>
-                    <Grid item  mt={10} md={6} >
+                    <Grid item mt={10} md={6} >
                         <Typography pb={3} sx={{ fontSize: { xs: '3rem', md: '3rem', lg: '5rem' }, lineHeight: 1 }} color="initial">Stay curious.</Typography>
                         <Typography pb={3} variant="h5" color="initial">Discover stories, thinking, <br /> <span>and expertise from writers on any topic.</span></Typography>
-                        <Button onClick={() => dispatch(modal(true))} sx={{color:'black'}} variant="outlined">Start Reading</Button>
+                        {
+                            !token && <Button onClick={() => dispatch(modal(true))} sx={{ color: 'black' }} variant="outlined">Start Reading</Button>
+                        }
                     </Grid>
                     <Grid item md={6} sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', maxHeight: '400px', paddingLeft: 20 }}>
                         <svg height="100%" viewBox="0 0 500 500">

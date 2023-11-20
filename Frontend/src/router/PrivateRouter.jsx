@@ -15,19 +15,9 @@ const PrivateRouter = () => {
 
   if (!token) {
     dispatch(modal(true))
-
-    if (!token && modalOpen === false) {
-      navigate(-1)
-      dispatch(modal(false))
-
-    }
-
+    navigate('/')
     return null;
   }
-
-
-
-
 
   return <Outlet />
 

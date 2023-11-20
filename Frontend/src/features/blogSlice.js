@@ -5,6 +5,7 @@ const initialState = {
   error: false,
   blogs: [],
   userlikes:[],
+  blogDetail: {},
   categories: [],
   userBlogs:[]
 };

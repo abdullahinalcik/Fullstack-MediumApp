@@ -1,44 +1,35 @@
-/* eslint-disable react/no-unescaped-entities */
-
-import { Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material"
-
-
 import { Form, Formik } from "formik";
 import { Textarea } from "@mui/joy";
-import { useEffect } from "react";
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import useBlogCall from "../hooks/useBlogCall";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 
-const NewBlog = () => {
+// eslint-disable-next-line react/prop-types
+const BlogForm = ({formValues , handleClose}) => {
+    
+    const {getCategories, createBlog, updateBlog} = useBlogCall()
 
- const {getCategories, createBlog} = useBlogCall()
-
- const {categories} = useSelector(state => state.blog)
-
-useEffect(() => {
-  getCategories('categories')
-
-}, [])
-
-
+    const {categories} = useSelector(state => state.blog)
+   
+   useEffect(() => {
+     getCategories('categories')
+   }, [])
 
   return (
-    <Container >
-      <Grid container justifyContent={'center'} height={"80vh"} alignItems={'center'} >
-        <Grid item xs={12} sm={10} md={6} lg={4} boxShadow={10} p={5}>
-          <Formik
-            initialValues={{
-              title: "",
-              content: "",
-              image: "",
-              category: "",
-              status: ""
-            }}
+    <Formik
+            initialValues={formValues}
             onSubmit={(values, action) => {
-              createBlog(values)
+
+                if("id" in formValues){
+                  updateBlog(values, values.id)
+                  handleClose()
+                }else{
+                  createBlog(values)
+                }
               action.resetForm()
-              action.setSubmiting(false)
+              action.setSubmitting(false)
             }}
           >
             {
@@ -116,10 +107,7 @@ useEffect(() => {
               )
             }
           </Formik>
-        </Grid>
-      </Grid>
-    </Container>
   )
 }
 
-export default NewBlog
+export default BlogForm

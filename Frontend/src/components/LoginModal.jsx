@@ -102,7 +102,7 @@ export default function LoginModal() {
                                     onSubmit={(values, action) => {
                                         login(values)
                                         action.resetForm()
-                                        action.setSubmiting(false)
+                                        action.setSubmitting(false)
                                     }}
                                 >
                                     {
