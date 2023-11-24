@@ -23,7 +23,7 @@ export default function BlogCard({ blog }) {
     const navigate = useNavigate()
     const { createLike } = useBlogCall()
 
-    const { _id, title, content, image, createdAt, author, likes, post_views, comment_count, category_name, likes_n } = blog
+    const { _id, title, content, image, createdAt, author, likes, post_views, comment_count, category, likes_n } = blog
 
     // check isLiked
     const { userInfo } = useSelector(state => state.auth)
@@ -55,7 +55,7 @@ export default function BlogCard({ blog }) {
                         display:{xs:'none', md:'flex'}
                     }}>{content.slice(0, 150)}...</Typography>
 
-                    <Chip size="small" sx={{ backgroundColor: '#F2F2F2', mt:{xs:3 , md:0} }} label={"# " + category_name} />
+                    <Chip size="small" sx={{ backgroundColor: '#F2F2F2', mt:{xs:3 , md:0} }} label={"# " + category?.name} />
 
                 </CardContent>
 
