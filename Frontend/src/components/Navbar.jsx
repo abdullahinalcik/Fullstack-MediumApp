@@ -103,7 +103,7 @@ function Navbar() {
                 >
                   <MenuIcon />
                 </IconButton>
-                <Box width={'80px'} m={"auto"}  sx={{cursor:'pointer' ,display: { sm: 'flex',xs:"none" }}}  onClick={()=>navigate('/')} >
+                <Box width={'80px'} m={"auto"}  sx={{cursor:'pointer' ,display: { sm: 'flex', xs:"none" }}}  onClick={()=>navigate('/')} >
                   <CardMedia
                     component="img"
                     height="60"
@@ -149,7 +149,7 @@ function Navbar() {
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: 'white', display: 'block' }}
                   >
-                    <NavLink style={({ isActive }) => ({ fontWeight: isActive ? 700 : 400, textDecoration: 'none', color: 'black' })} to={page.url} > {page.title}</NavLink>
+                    <NavLink style={({ isActive }) => ({ fontWeight: isActive ? 700 : 400, textDecoration: 'none', color:navbarBg ? 'black' : 'white'})} to={page.url} > {page.title}</NavLink>
                   </Button>
                 ))}
                    <Box width={'100px'} m={0} p={0} sx={{cursor:'pointer'}} onClick={()=>navigate('/')} >
@@ -160,7 +160,7 @@ function Navbar() {
 
               <Box sx={{ flexGrow: 0 }}>
                 <Stack spacing={1} direction={'row'} justifyContent={'center'} alignItems={'center'}>
-                  {token && <Typography variant="body1" color="initial">{userInfo?.username}</Typography>}
+                  {token && <Typography variant="body1" color={navbarBg ? 'black' : 'white'}>{userInfo?.username}</Typography>}
                   <Tooltip title="Open settings">
 
                     {
@@ -191,13 +191,7 @@ function Navbar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                    <CardMedia
-                    component="img"
-                    height="105"
-                    image={logo1}
-                    alt={'logo'}
-                    sx={{ objectFit: "cover" }}
-                  />
+                   
                   {settings.map((setting) => (
                     <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
                       <Typography textAlign="center">
