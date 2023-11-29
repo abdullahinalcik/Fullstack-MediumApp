@@ -18,6 +18,7 @@ import { modal } from '../features/authSlice';
 import useAuthCall from '../hooks/useAuthCall';
 import logo1 from '../img/logo1.png'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
 const pages = [
@@ -44,9 +45,10 @@ function Navbar() {
 
   let settings = token ? LogedInSettings : LogedOutSettings
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [navbarBg, setNavbarBg] = React.useState(false)
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [navbarBg, setNavbarBg] = useState(false)
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -169,7 +171,7 @@ function Navbar() {
                           <BadgeAvatars image={userInfo?.image} />
                         </IconButton>)
 
-                        : <Typography onClick={() => dispacth(modal(true))} px={2} py={1} sx={{ cursor: 'pointer', backgroundColor: 'black', borderRadius: 3 }} variant="body1" color="white">Get Started</Typography>
+                        : <Typography onClick={() => dispacth(modal(true))} px={{md:2,  sm: 1 ,xs: 1,}} py={{md:1,  sm: .5, xs: .5 }} sx={{ cursor: 'pointer', backgroundColor: 'black', borderRadius: 3,fontSize:{md:"1.05rem",xs:"0.95rem"} }} variant="body1" color="white">Get Started</Typography>
                     }
 
                   </Tooltip>

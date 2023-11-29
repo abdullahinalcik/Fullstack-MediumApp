@@ -86,13 +86,13 @@ export default function LoginModal() {
                 }}
             >
                 <Fade in={modalOpen}>
-                    <Box sx={{ ...style, p: { xs: 2, md: 10 }, width: { xs: '80%', md: 600 } }}  >
+                    <Box sx={{ ...style, p: { xs: 2, md: 5 }, width: { xs: '70%', md: 400 } }}  >
 
                         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal" flipSpeedBackToFront={2}
                             flipSpeedFrontToBack={2}>
 
                             <Box sx={{ position: 'relative' }} >
-                                <CloseIcon sx={{ position: 'absolute', top: { xs: 0, md: -65 }, right: { xs: 0, md: -60 }, cursor: 'pointer' }} onClick={() => dispacth(modal(false))} />
+                                <CloseIcon sx={{ position: 'absolute', top: { xs: 0, md: -30 }, right: { xs: 0, md: -10 }, cursor: 'pointer' }} onClick={() => dispacth(modal(false))} />
 
                                 <Typography variant="h5" color="initial" textAlign={'center'} mb={3}>Join Us</Typography>
                              
@@ -165,8 +165,8 @@ export default function LoginModal() {
                             </Box>
 
                             <Box sx={{ position: 'relative', ...secondCardStyle }}>
-                                <CloseIcon sx={{ position: 'absolute', top: { xs: 0, md: -65 }, right: { xs: 0, md: -60 }, cursor: 'pointer' }} onClick={() => dispacth(modal(false))} />
-                                <Typography variant="h5" color="initial" textAlign={'center'} mb={3}>Register</Typography>
+                                <CloseIcon sx={{ position: 'absolute', top: { xs: 0, md: -30 }, right: { xs: 0, md: -15 }, cursor: 'pointer' }} onClick={() => dispacth(modal(false))} />
+                                <Typography variant="h5" color="initial" textAlign={'center'} mb={2}>Register</Typography>
 
                                 <Formik
                                     initialValues={{
@@ -186,7 +186,7 @@ export default function LoginModal() {
                                     {
                                         ({ handleChange, values, handleBlur, touched, errors }) => (
                                             <Form>
-                                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.4 }}>
 
                                                     <Box sx={{ display: 'flex', gap: 2 }}>
                                                         <TextField
