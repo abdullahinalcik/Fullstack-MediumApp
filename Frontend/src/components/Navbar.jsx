@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modal } from '../features/authSlice';
 import useAuthCall from '../hooks/useAuthCall';
 import logo from '../img/logo.png'
+import logo1 from '../img/logo1.png'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -79,29 +80,15 @@ function Navbar() {
             <Toolbar disableGutters >
 
               <Box sx={{ display: { xs: 'none', md: 'flex' }, }} flexDirection={'column'} mr={2} mt={0}>
-                <Box width={'100px'} m={0} p={0} sx={{cursor:'pointer'}} onClick={()=>navigate('/')} >
+                <Box width={'115px'} m={0} p={0} sx={{cursor:'pointer'}} onClick={()=>navigate('/')} >
                   <CardMedia
                     component="img"
-                    height="70"
-                    image={logo}
+                    height="105"
+                    image={logo1}
                     alt={'logo'}
                     sx={{ objectFit: "cover" }}
                   />
-                  <Typography
-                    variant="h6"
-                    noWrap
-                    sx={{
-                      pt: 0,
-                      display: { xs: 'none', md: 'flex' },
-                      fontFamily: 'monospace',
-                      letterSpacing: '.1rem',
-                      textDecoration: 'none',
-                      color: "black",
-                      fontWeight: 'bolder'
-                    }}
-                  >  
-                      TEAMWORK
-                  </Typography>
+                 
                 </Box>
 
               </Box>
@@ -117,6 +104,16 @@ function Navbar() {
                 >
                   <MenuIcon />
                 </IconButton>
+                <Box width={'80px'} m={"auto"}  sx={{cursor:'pointer' ,display: { sm: 'flex',xs:"none" }}}  onClick={()=>navigate('/')} >
+                  <CardMedia
+                    component="img"
+                    height="60"
+                    image={logo1}
+                    alt={'logo'}
+                    sx={{ objectFit: "cover" }}
+                  />
+                 
+                </Box>
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorElNav}
@@ -156,6 +153,10 @@ function Navbar() {
                     <NavLink style={({ isActive }) => ({ fontWeight: isActive ? 700 : 400, textDecoration: 'none', color: 'black' })} to={page.url} > {page.title}</NavLink>
                   </Button>
                 ))}
+                   <Box width={'100px'} m={0} p={0} sx={{cursor:'pointer'}} onClick={()=>navigate('/')} >
+               
+                 
+                </Box>
               </Box>
 
               <Box sx={{ flexGrow: 0 }}>
@@ -173,6 +174,7 @@ function Navbar() {
                     }
 
                   </Tooltip>
+               
                 </Stack>
                 <Menu
                   sx={{ mt: '45px' }}
@@ -190,6 +192,13 @@ function Navbar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
+                    <CardMedia
+                    component="img"
+                    height="105"
+                    image={logo1}
+                    alt={'logo'}
+                    sx={{ objectFit: "cover" }}
+                  />
                   {settings.map((setting) => (
                     <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
                       <Typography textAlign="center">
@@ -198,6 +207,7 @@ function Navbar() {
                     </MenuItem>
                   ))}
                 </Menu>
+              
               </Box>
             </Toolbar>
           </Container>
