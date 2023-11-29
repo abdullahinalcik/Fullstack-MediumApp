@@ -16,7 +16,6 @@ import { CardMedia, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { modal } from '../features/authSlice';
 import useAuthCall from '../hooks/useAuthCall';
-import logo from '../img/logo.png'
 import logo1 from '../img/logo1.png'
 import { useNavigate } from 'react-router-dom';
 
